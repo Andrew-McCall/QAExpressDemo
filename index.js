@@ -1,8 +1,24 @@
 const express = require("express");
+const cors = require('cors');
+const bodyParser = require('body-parser');
+
+
 const {Square} = require("./demo.js")
 
 const app = express();
-app.use(express.json())
+
+app.use(bodyParser.json());
+app.use(cors());
+app.use((req, res, next) => {
+
+    // express.json is doing | .body String -> Object
+    console.log(req.ip);
+    console.log(new Date());
+    if (req.url !== "/"){
+        next();
+    }
+
+})
 
 const server = app.listen(3001, () => {
     console.log(`Server started successfully on port number ${server.address().port}`);
