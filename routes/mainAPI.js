@@ -17,7 +17,7 @@ router.get('/error', (req, res, next) => {
 router.post("/update/:id", (req, res) => {
     const id = req.params.id;
     if (id<0){
-        throw Error("Bad Id")
+        throw new Error("Bad Id")
     }
 
     console.log(id)

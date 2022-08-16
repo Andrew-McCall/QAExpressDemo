@@ -21,12 +21,12 @@ app.use((req, res, next) => {
 })
 
 /// Routes app.use(require("./routes/mainAPI.js"))
-const mainAPI = require("./routes/mainAPI.js")
-app.use("/api", mainAPI )
+app.use("/api", require("./routes/mainAPI.js") )
+app.use("/mongo", require("./routes/mongoAPI.js") )
 
 /// Error Middlewear (LAST!)
 app.use((err, req, res, next)=> {
-    console.log("Error")
+    console.log(err)
     res.status(500).send('Mistakes were made');
     next()
 })
