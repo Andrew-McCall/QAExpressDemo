@@ -34,6 +34,32 @@ router.post("/create", (req, res) => {
 
 })
 
+router.put("/clean/:id", (req, res) => {
+    trainerModel.update({
+
+        "age": { "$gt":20 }
+
+    },{name:"Choosen one!?!?!!?"}).then(res =>{
+        console.log(res)
+    }).catch(err => {
+        console.log(err)
+    })
+
+    // trainerModel.find({}).then((trainers)=>{
+    
+    //     trainers[req.params.id].name = "Andrew David McCall"
+    //     trainers[req.params.id].age = 20
+    //     trainers[req.params.id].__v ++;
+    //     trainers[req.params.id].save().then((updated) => {
+    //         res.send(JSON.stringify(updated))
+    //     })
+    
+    // }).catch((err)=>{
+    //     throw err
+    // });
+})
+
+
 router.delete("/delete/:id",(req, res)=>{
 
     trainerModel.find({}).then((trainers)=>{
@@ -42,9 +68,7 @@ router.delete("/delete/:id",(req, res)=>{
 
             trainerModel.findByIdAndDelete(trainers[req.params.id]._id).then((deleted)=>{
                 res.send(deleted)
-            }).catch((err)=>{
-                throw err
-            });
+            })
 
         }else{
             throw new Error("Invaild Id")
