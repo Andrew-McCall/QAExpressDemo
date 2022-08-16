@@ -63,7 +63,7 @@ app.use((req, res, next) => {
 })
 
 /// Error Middlewear (LAST!)
-app.use((Error, req, res, next)=> {
+app.use((err, req, res, next)=> {
     console.log("Error")
     res.status(500).send('Mistakes were made');
     next()
