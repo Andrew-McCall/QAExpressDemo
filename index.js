@@ -2,6 +2,7 @@
 const express = require("express");
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const { default: mongoose } = require("mongoose");
 
 ///Setup
 const app = express();
@@ -35,3 +36,9 @@ app.use((err, req, res, next)=> {
 const server = app.listen(3001, () => {
     console.log(`Server started successfully on port number ${server.address().port}`);
 });
+
+server.on('close', ()=>{
+    mongoose.connection.close();
+});
+
+module.exports = server

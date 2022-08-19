@@ -9,7 +9,7 @@ mongoose.connect("mongodb://localhost:27017/QA").then(()=>{
 const trainerSchema = mongoose.Schema({
     name:String,
     age:Number,
-    tech:[String]
+    tech:[String],
 })
 
 const trainerModel = new mongoose.model("trainers", trainerSchema)
